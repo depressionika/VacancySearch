@@ -6,7 +6,6 @@ theme: /
     state: Start
         q!: $regex</start>
         a: Привет
-        intent: /привет || toState = "./"
         intent: /jobSearch_usersays_ru || toState = "/JobSearchIntent"
         event: noMatch || toState = "./"
 
