@@ -1,499 +1,97 @@
 {
-  "project" : {
-    "id" : "vacancysearch-1000092251-xhO",
-    "name" : "vacancysearch-1000092251-xhO",
-    "folder" : "/platform"
-  },
-  "settings" : {
-    "language" : "ru",
-    "spellingCorrection" : false,
-    "classificationAlgorithm" : "sts",
-    "timezone" : "Europe/Moscow",
-    "extendedSettings" : {
-      "classificationAlgorithmVersion" : 1.0,
-      "tokenizerEngine" : "mystem",
-      "useShared" : true,
-      "zflPatternsEnabled" : true
+    "project": {
+        "id": "zb-cailapub",
+        "name": "zb-cailapub",
+        "folder": "/platform"
     },
-    "shared" : false,
-    "validation" : {
-      "phraseValidationEnabled" : true,
-      "answerValidationEnabled" : true,
-      "phraseValidationThreshold" : 0.5,
-      "answerValidationThreshold" : 0.8
-    }
-  },
-  "intents" : [ {
-    "path" : "/jobSearchLocation-yes_usersays_ru",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "Новосибирск"
-    }, {
-      "text" : "Москва"
-    }, {
-      "text" : "Казань"
-    }, {
-      "text" : "Иркутск"
-    }, {
-      "text" : "о да"
-    }, {
-      "text" : "угу"
-    }, {
-      "text" : "ага"
-    }, {
-      "text" : "конечно"
-    }, {
-      "text" : "во Владимире"
-    }, {
-      "text" : "в"
-    }, {
-      "text" : "да"
-    }, {
-      "text" : "хочу"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
+    "settings": {
+        "language": "ru",
+        "spellingCorrection": false,
+        "classificationAlgorithm": "sts",
+        "validation": {
+            "phraseValidationEnabled": true,
+            "answerValidationEnabled": true,
+            "phraseValidationThreshold": 0.5,
+            "answerValidationThreshold": 0.8
+        },
+        "timezone": "Europe/Moscow",
+        "extendedSettings": {
+            "classificationAlgorithmVersion": 1.0,
+            "tokenizerEngine": "mystem",
+            "useShared": false
+        }
     },
-    "patterns" : [ ],
-    "slots" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/jobSearchProfession-yes_usersays_ru",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "пилот самолета"
-    }, {
-      "text" : "пилот"
-    }, {
-      "text" : "водитель"
-    }, {
-      "text" : "художник"
-    }, {
-      "text" : "дворник"
-    }, {
-      "text" : "мне нужна"
-    }, {
-      "text" : "работа"
-    }, {
-      "text" : "я хочу посмотреть вакансии"
-    }, {
-      "text" : "педагога"
-    }, {
-      "text" : "покажи мне вакансии"
-    }, {
-      "text" : "продавца"
-    }, {
-      "text" : "учителя"
-    }, {
-      "text" : "доктор"
-    }, {
-      "text" : "мне интересны вакансии"
-    }, {
-      "text" : "программиста"
-    }, {
-      "text" : "программист"
-    }, {
-      "text" : "мне интересны вакансии профессии"
-    }, {
-      "text" : "повар"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "slots" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/Я не хочу указывать город",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "не важно"
-    }, {
-      "text" : "любой город"
-    }, {
-      "text" : "в любом"
-    }, {
-      "text" : "Я не хочу указывать город"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/Любом",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "Любом"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
-  }, {
-    "path" : "/любой город",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "любой город"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
-  }, {
-    "path" : "/Новый интент",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
-  }, {
-    "path" : "/пока",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "пока"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "priority" : 0
-  }, {
-    "path" : "/привет",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "здарова"
-    }, {
-      "text" : "привет"
-    }, {
-      "text" : "ку"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/jobSearch_usersays_ru",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "подбери для меня список вакансий"
-    }, {
-      "text" : "мне нужна работа"
-    }, {
-      "text" : "я хочу найти работу"
-    }, {
-      "text" : "найди"
-    }, {
-      "text" : "мне работу"
-    }, {
-      "text" : "покажи мне работу"
-    }, {
-      "text" : "покажи мне вакансии"
-    }, {
-      "text" : "подбери мне вакансии"
-    }, {
-      "text" : "помоги"
-    }, {
-      "text" : "хочу найти работу"
-    }, {
-      "text" : "поиск вакансий"
-    }, {
-      "text" : "найти работу"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "slots" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/Зарплата",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "около 250000"
-    }, {
-      "text" : "около 20к"
-    }, {
-      "text" : "350.000р"
-    }, {
-      "text" : "20.000р"
-    }, {
-      "text" : "50к"
-    }, {
-      "text" : "100000р"
-    }, {
-      "text" : "200000"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "priority" : 0
-  } ],
-  "entities" : [ {
-    "entity" : {
-      "name" : "Location_entries_ru",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "Moscow" ],
-      "value" : "{\n  \"value\": \"Moscow\",\n  \"synonyms\": [\n    \"Moscow\",\n    \"Москва\",\n    \"москва\",\n    \"мск\",\n    \"в москве\",\n    \"москве\"\n  ]\n}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Krasnoyarsk" ],
-      "value" : "{\n  \"value\": \"Krasnoyarsk\",\n  \"synonyms\": [\n    \"Krasnoyarsk\",\n    \"Красноярск\",\n    \"красноярск\",\n    \"крск\",\n    \"в красноярске\",\n    \"красноярске\"\n  ]\n}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Irkutsk" ],
-      "value" : "{\n  \"value\": \"Ikrutsk\",\n  \"synonyms\": [\n    \"Ikrutsk\",\n    \"Иркутск\",\n    \"иркутск\",\n    \"ирк\",\n    \"в иркутске\",\n    \"иркутске\"\n  ]\n}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Omsk" ],
-      "value" : "{\n  \"value\": \"Omsk\",\n  \"synonyms\": [\n    \"Omsk\",\n    \"Омск\",\n    \"омск\",\n    \"в омске\",\n    \"омске\"\n  ]\n}"
-    } ]
-  }, {
-    "entity" : {
-      "name" : "Experience_entries_ru",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "From 1 year to 3 years" ],
-      "value" : "{\n  \"value\": \"From 1 year to 3 years\",\n  \"synonyms\": [\n    \"From 1 year to 3 years\",\n    \"1 год\",\n    \"один год\",\n    \"год\",\n    \"от одного года\",\n    \"два года\",\n    \"три года\",\n    \"2 года\",\n    \"больше двух лет\",\n    \"больше 2 лет\",\n    \"меньше 3 лет\",\n    \"меньше трех лет\",\n    \"почти два года\",\n    \"почти 2 года\",\n    \"почти год\",\n    \"почти 1 год\",\n    \"почти 3 года\",\n    \"почти три года\"\n  ]\n}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "No experience" ],
-      "value" : "{\n  \"value\": \"No experience\",\n  \"synonyms\": [\n    \"No experience\",\n    \"нет опыта\",\n    \"нет\",\n    \"без опыта\",\n    \"не работал\",\n    \"не работала\",\n    \"без опыта работы\"\n  ]\n}"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "More than 6 years" ],
-      "value" : "{\n    \"value\": \"More than 6 years\",\n    \"synonyms\": [\n      \"More than 6 years\",\n      \"более 6 лет\",\n      \"более шести лет\",\n      \"от шести лет\",\n      \"от 6 лет\",\n      \"7 лет\",\n      \"8 лет\",\n      \"9 лет\",\n      \"10 лет\",\n      \"20 лет\"\n    ]\n  }"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Doesn't matter" ],
-      "value" : "{\n    \"value\": \"Doesn't matter\",\n    \"synonyms\": [\n      \"Doesn't matter\",\n      \"не имеет значения\"\n    ]\n  }"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "From 3 to 6 years" ],
-      "value" : "{\n    \"value\": \"From 3 to 6 years\",\n    \"synonyms\": [\n      \"From 3 to 6 years\",\n      \"больше 3 лет\",\n      \"3 года\",\n      \"три года\",\n      \"четыре года\",\n      \"больше трех лет\",\n      \"больше четырех лет\",\n      \"4 года\",\n      \"пять лет\",\n      \"5 лет\",\n      \"больше 5 лет\",\n      \"около 6 лет\",\n      \"меньше 6 лет\",\n      \"от 3 до 6 лет\",\n      \"от трех лет\",\n      \"6 лет\",\n      \"шесть лет\"\n    ]\n  }"
-    } ]
-  }, {
-    "entity" : {
-      "name" : "Salary_entries_ru",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "from 60000₽" ],
-      "value" : "{\n    \"value\": \"from 60000₽\",\n    \"synonyms\": [\n      \"from 60000₽\",\n      \"от 60\",\n      \"от 60000 рублей\",\n      \"от 60000\",\n      \"от шестидесяти тысяч рублей\",\n      \"больше 60 тысяч\",\n      \"60 тысяч\",\n      \"больше 60 тысяч рублей\"\n    ]\n  }"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "from 180000₽" ],
-      "value" : "{\n    \"value\": \"from 180000₽\",\n    \"synonyms\": [\n      \"from 180000₽\",\n      \"от 180 000\",\n      \"от 180000\",\n      \"от 180000 рублей\",\n      \"больше 180 000 рублей\"\n    ]\n  }"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "from 120000₽" ],
-      "value" : "{\n    \"value\": \"from 120000₽\",\n    \"synonyms\": [\n      \"from 120000₽\",\n      \"от 120 000₽\",\n      \"от 120000\",\n      \"от 120000 рублей\",\n      \"от ста двадцати тысяч рублей\",\n      \"больше 120 тысяч\"\n    ]\n  }"
-    } ]
-  }, {
-    "entity" : {
-      "name" : "Education_entries_ru",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "higher" ],
-      "value" : "{\n    \"value\": \"higher\",\n    \"synonyms\": [\n      \"higher\",\n      \"высшее\",\n      \"высшее образование\",\n      \"вышка\",\n      \"университет\",\n      \"институт\",\n      \"высшее профессиональное образование\",\n      \"бакаливриат\",\n      \"аспирантура\",\n      \"магистратура\",\n      \"оконченное высшее\",\n      \"специалитет\"\n    ]\n  }"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "not_required_or_not_specified" ],
-      "value" : "{\n    \"value\": \"not_required_or_not_specified\",\n    \"synonyms\": [\n      \"not_required_or_not_specified\",\n      \"не требуется или не указано\",\n      \"не требуется\",\n      \"не указано\",\n      \"нет\",\n      \"не важно\",\n      \"школа\",\n      \"неоконченное\",\n      \"не оконченное\",\n      \"основное\",\n      \"нет образования\",\n      \"школьное\",\n      \"я окончил школу\"\n    ]\n  }"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "special_secondary" ],
-      "value" : "{\n    \"value\": \"special_secondary\",\n    \"synonyms\": [\n      \"special_secondary\",\n      \"среднее\",\n      \"среднее образование\",\n      \"колледж\",\n      \"оконченное среднее\",\n      \"техникум\"\n    ]\n  }"
-    } ]
-  }, {
-    "entity" : {
-      "name" : "Profession_entries_ru",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : true,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : false
-    },
-    "records" : [ {
-      "type" : "synonyms",
-      "rule" : [ "Programmer" ],
-      "value" : "{\n    \"value\": \"Programmer\",\n    \"synonyms\": [\n      \"Programmer\",\n      \"программист\",\n      \"разработчик\",\n      \"it-специалист\",\n      \"программист 1c\",\n      \"программист 1с\",\n      \"программист-стажер\",\n      \"программист стажер\",\n      \"программист java\",\n      \"программист с++\",\n      \"программист python\",\n      \"программист c#\",\n      \"программист php\",\n      \"программист микроконтроллеров\",\n      \"web программист\",\n      \"web-программист\",\n      \"веб программист\",\n      \"веб-программист\",\n      \"веб разработчик\",\n      \"веб-разработчик\"\n    ]\n  }"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Cook" ],
-      "value" : "{\n    \"value\": \"Cook\",\n    \"synonyms\": [\n      \"Cook\",\n      \"повар\",\n      \"шеф-повар\",\n      \"повар без опыта\",\n      \"повар-универсал\",\n      \"повар-сушист\",\n      \"повар в семью\",\n      \"повар в офис\",\n      \"повар универсал\",\n      \"повар в столовую\",\n      \"повар-кондитер\",\n      \"повар холодного цеха\"\n    ]\n  }"
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Waiter" ],
-      "value" : "{\n    \"value\": \"Waiter\",\n    \"synonyms\": [\n      \"Waiter\",\n      \"официант\",\n      \"официантка\",\n      \"официант ночь\",\n      \"официант выходного дня\",\n      \"официант-бармен\",\n      \"официант в ресторан\",\n      \"официант на банкеты\",\n      \"официант выходные\",\n      \"официант ночная смена\",\n      \"официант в клуб\"\n    ]\n  }"
-    } ]
-  } ],
-  "enabledSystemEntities" : [ "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
-  "spellerDictionary" : [ ],
-  "systemEntities" : [ {
-    "name" : "mystem.geo",
-    "enabled" : false
-  }, {
-    "name" : "mystem.persn",
-    "enabled" : false
-  }, {
-    "name" : "mystem.obsc",
-    "enabled" : false
-  }, {
-    "name" : "mystem.patrn",
-    "enabled" : false
-  }, {
-    "name" : "mystem.famn",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.romn",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.latn",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.numb",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.intg",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.abbr",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.name",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.surn",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.patr",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.geox",
-    "enabled" : false
-  }, {
-    "name" : "pymorphy.orgn",
-    "enabled" : false
-  }, {
-    "name" : "duckling.number",
-    "version" : "v2",
-    "enabled" : true
-  }, {
-    "name" : "duckling.ordinal",
-    "version" : "v2",
-    "enabled" : false
-  }, {
-    "name" : "duckling.amount-of-money",
-    "version" : "v2",
-    "enabled" : false
-  }, {
-    "name" : "duckling.distance",
-    "version" : "v2",
-    "enabled" : false
-  }, {
-    "name" : "duckling.time",
-    "version" : "v2",
-    "enabled" : true
-  }, {
-    "name" : "duckling.date",
-    "version" : "v2",
-    "enabled" : false
-  }, {
-    "name" : "duckling.time-of-day",
-    "version" : "v2",
-    "enabled" : false
-  }, {
-    "name" : "duckling.duration",
-    "version" : "v2",
-    "enabled" : true
-  }, {
-    "name" : "duckling.phone-number",
-    "version" : "v2",
-    "enabled" : true
-  }, {
-    "name" : "duckling.email",
-    "version" : "v2",
-    "enabled" : true
-  }, {
-    "name" : "duckling.url",
-    "version" : "v2",
-    "enabled" : true
-  }, {
-    "name" : "duckling.interval",
-    "version" : "v2",
-    "enabled" : false
-  }, {
-    "name" : "mlps-obscene.obscene",
-    "enabled" : false
-  }, {
-    "name" : "zb.datetime",
-    "enabled" : false
-  }, {
-    "name" : "zb.number",
-    "enabled" : false
-  } ],
-  "faq" : [ ],
-  "skills" : [ ]
+    "intents": [
+        {
+            "path": "/пока",
+            "description": null,
+            "answer": null,
+            "customData": null,
+            "enabled": true,
+            "phrases": [
+                {
+                    "text": "пока",
+                    "entities": null
+                }
+            ],
+            "patterns": null,
+            "slots": null
+        },
+        {
+            "path": "/привет",
+            "description": null,
+            "answer": null,
+            "customData": null,
+            "enabled": true,
+            "phrases": [
+                {
+                    "text": "привет",
+                    "entities": null
+                }
+            ],
+            "patterns": null,
+            "slots": null
+        }
+    ],
+    "entities": [],
+    "enabledSystemEntities": [
+        "duckling.number",
+        "duckling.time",
+        "duckling.duration",
+        "duckling.phone-number",
+        "duckling.email",
+        "duckling.url"
+    ],
+    "systemEntities": [
+        {
+            "name": "duckling.number",
+            "version": "v2",
+            "enabled": true
+        },
+        {
+            "name": "duckling.time",
+            "version": "v2",
+            "enabled": true
+        },
+        {
+            "name": "duckling.duration",
+            "version": "v2",
+            "enabled": true
+        },
+        {
+            "name": "duckling.phone-number",
+            "version": "v2",
+            "enabled": true
+        },
+        {
+            "name": "duckling.email",
+            "version": "v2",
+            "enabled": true
+        },
+        {
+            "name": "duckling.url",
+            "version": "v2",
+            "enabled": true
+        }
+    ]
 }
