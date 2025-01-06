@@ -2,7 +2,7 @@ require: slotfilling/slotFilling.sc
   module = sys.zb-common
 theme: /
     
-    state: SearchVacancies
+    state: NewState
         q!: * найти работу * 
         script:
             # Отправляем запрос на внешний API для поиска вакансий
