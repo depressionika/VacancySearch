@@ -18,18 +18,18 @@ theme: /
 
     state: Найденные вакансии
     event: noMatch || toState = "./"
-    a: |
-        Найденные вакансии:
-        Профессия: {{$session.position}}
-        Компания: {{$session.company}}
-        Город: {{$session.location}}
-        Зарплата: от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}
-
-    # Теперь используем правильное оформление для HTML
-    fulfillmentMessage:
-        - text:
-            text:
-                - "Найденные вакансии:<br><b>Профессия:</b> {{$session.position}}<br><b>Компания:</b> {{$session.company}}<br><b>Город:</b> {{$session.location}}<br><b>Зарплата:</b> от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}"
+        a: |
+            Найденные вакансии:
+            Профессия: {{$session.position}}
+            Компания: {{$session.company}}
+            Город: {{$session.location}}
+            Зарплата: от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}
+    
+        # Теперь используем правильное оформление для HTML
+        fulfillmentMessage:
+            - text:
+                text:
+                    - "Найденные вакансии:<br><b>Профессия:</b> {{$session.position}}<br><b>Компания:</b> {{$session.company}}<br><b>Город:</b> {{$session.location}}<br><b>Зарплата:</b> от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}"
                 
     state: вывод
         a: {{$session.profession}}
