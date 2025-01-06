@@ -4,14 +4,13 @@ theme: /
     
     state: NewState
         script:
-            # Отправляем запрос на внешний API для поиска вакансий
             $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", {
-                query: {
-                    salary: $session.salary,
-                    text: $session.profession 
-                }
-            });
-            
+            query: {
+                salary: $session.salary,
+                text: $session.profession 
+            }
+                });
+        # Отправляем запрос на внешний API для поиска вакансий
         if: $temp.response.isOk
             # Если запрос успешен, выводим вакансии
             a: |
@@ -20,23 +19,9 @@ theme: /
                 Компания: {{$temp.response.data.company}}
                 Город: {{$temp.response.data.location}}
                 Зарплата: от {{$temp.response.data.from_salary}} до {{$temp.response.data.to_salary}} {{$temp.response.data.currency}}
-        else:
+        else: 
             # Если запрос не успешен, выводим ошибку
             a: Не удалось найти вакансии. Попробуй ещё раз.
-            
-    state: Найденные вакансии
-        event: noMatch || toState = "./"
-        a: |
-            Найденные вакансии:
-            Профессия: {{$session.position}}
-            Компания: {{$session.company}}
-            Город: {{$session.location}}
-            Зарплата: от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}
-                
-    state: вывод
-        a: {{$session.profession}}
-            {{$session.city}}
-            {{$session.salary}} || htmlEnabled = true, html = "{{$session.profession}}<br>{{$session.city}}<br>{{$session.salary}}"
 
     state: Start
         q!: $regex</start>
