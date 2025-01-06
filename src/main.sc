@@ -8,8 +8,8 @@ theme: /
             # Отправляем запрос на внешний API для поиска вакансий
             $vacancies.response = $http.post("http://185.242.118.144:8000/find_jobs", {
                 query: {
-                    salary: $session.salary,         # Из сессии получаем зарплату
-                    text: $session.profession        # Из сессии получаем профессию
+                    salary: $session.salary,
+                    text: $session.profession 
                 }
             });
             
