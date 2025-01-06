@@ -5,10 +5,14 @@ theme: /
     state: Start
         q!: $regex</start>
         a: Начнём.
+        intent: /sys/aimylogic/ru/hello || toState = "/Hello"
+        event: noMatch || toState = "./"
 
     state: Hello
         intent!: /привет
         a: Привет привет
+        intent: /Поиск работы || toState = "/Поиск работы"
+        event: noMatch || toState = "./"
 
     state: Bye
         intent!: /пока
@@ -21,3 +25,64 @@ theme: /
     state: Match
         event!: match
         a: {{$context.intent.answer}}
+
+    state: Поиск работы
+        InputText: 
+            prompt = Какая профессия вам интересна?
+            varName = profession
+            html = 
+            htmlEnabled = false
+            actions = 
+            then = /Какой город
+        event: noMatch || toState = "./"
+
+    state: Какой город
+        InputText: 
+            prompt = В каком городе?
+            varName = city
+            html = 
+            htmlEnabled = false
+            then = /Зарплата
+            actions = 
+
+    state: Зарплата
+        InputNumber: 
+            prompt = Желаемая зарплата?
+            varName = salary
+            html = 
+            htmlEnabled = false
+            failureMessage = [""]
+            failureMessageHtml = [""]
+            then = /NewState
+            minValue = 5000
+            maxValue = 10000000
+            actions = 
+
+    state: Найденные вакансии
+        event: noMatch || toState = "./"
+        a: Найденные вакансии:
+            Профессия: {{$httpResponse.position}}
+            Компания: {{$httpResponse.company}}
+            Город: {{$httpResponse.location}}
+            {{$httpResponse.from_salary}}
+            {{$httpResponse.to_salary}}
+            {{$httpResponse.currency}} || htmlEnabled = true, html = "Найденные вакансии:<br>Профессия: "{{$session.position}}"<br>Компания: {{$session.company}}<br>Город: {{$session.location}}<br>{{$session.from_salary}}<br>{{$session.to_salary}}<br>{{$session.currency}}"
+
+    state: NewState
+        HttpRequest: 
+            url = http://185.242.118.144:8000/find_jobs
+            method = POST
+            dataType = 
+            body = {
+                    "salary": {{$session.salary}},
+                    "text": "{{$session.profession}}"
+                }
+            okState = /Найденные вакансии
+            timeout = 0
+            headers = []
+            vars = [{"name":"position","value":"$httpResponse.position"},{"name":"company","value":"$httpResponse.company"},{"name":"location","value":"$httpResponse.location"},{"name":"from_salary","value":"$httpResponse.from_salary"},{"name":"to_salary","value":"$httpResponse.to_salary"},{"name":"currency","value":"$httpResponse.currency"}]
+
+    state: вывод
+        a: {{$session.profession}}
+            {{$session.city}}
+            {{$session.salary}} || htmlEnabled = true, html = "{{$session.profession}}<br>{{$session.city}}<br>{{$session.salary}}"
