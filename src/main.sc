@@ -2,20 +2,29 @@ require: slotfilling/slotFilling.sc
   module = sys.zb-common
 theme: /
     
-    state: NewState
-        HttpRequest: 
-            url = http://185.242.118.144:8000/find_jobs
-            method = POST
-            dataType = json
-            body = {
-                    "salary": {{$session.salary}},
-                    "text": "{{$session.profession}}"
+    state: SearchVacancies
+        q!: * найти работу * 
+        script:
+            # Отправляем запрос на внешний API для поиска вакансий
+            $vacancies.response = $http.post("http://185.242.118.144:8000/find_jobs", {
+                query: {
+                    salary: $session.salary,         # Из сессии получаем зарплату
+                    text: $session.profession        # Из сессии получаем профессию
                 }
-            okState = /Найденные вакансии
-            timeout = 0
-            headers = []
-            vars = [{"name":"position","value":"$httpResponse.position"},{"name":"company","value":"$httpResponse.company"},{"name":"location","value":"$httpResponse.location"},{"name":"from_salary","value":"$httpResponse.from_salary"},{"name":"to_salary","value":"$httpResponse.to_salary"},{"name":"currency","value":"$httpResponse.currency"}]
-
+            });
+            
+        if: $vacancies.response.isOk
+            # Если запрос успешен, выводим вакансии
+            a: |
+                Вот несколько вакансий для тебя:
+                Профессия: {{$vacancies.response.data.position}}
+                Компания: {{$vacancies.response.data.company}}
+                Город: {{$vacancies.response.data.location}}
+                Зарплата: от {{$vacancies.response.data.from_salary}} до {{$vacancies.response.data.to_salary}} {{$vacancies.response.data.currency}}
+        else:
+            # Если запрос не успешен, выводим ошибку
+            a: Не удалось найти вакансии. Попробуй ещё раз.
+            
     state: Найденные вакансии
         event: noMatch || toState = "./"
         a: |
