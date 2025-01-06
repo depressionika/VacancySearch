@@ -9,15 +9,6 @@ theme: /
         intent: /jobSearch_usersays_ru || toState = "/JobSearchIntent"
         event: noMatch || toState = "./"
 
-    # Интент: пользователь хочет найти работу 
-    state: JobSearchIntent
-        intent!: jobSearch_usersays_ru
-        a: Отлично! В каком городе ты ищешь работу?
-        go!: 
-        intent: /Я не хочу указывать город || toState = "/GetCityNo"
-        intent: /sys/aimylogic/ru/city || toState = "/GetCity"
-        event: noMatch || toState = "./"
-
     # Сбор города 
     state: GetCity
         intent!: jobSearchLocation-yes_usersays_ru
@@ -80,3 +71,12 @@ theme: /
     state: Match 
         event!: match 
         a: {{$context.intent.answer}}
+
+    # Интент: пользователь хочет найти работу 
+    state: JobSearchIntent
+        intent!: jobSearch_usersays_ru
+        a: Отлично! В каком городе ты ищешь работу?
+        go!: 
+        intent: /Я не хочу указывать город || toState = "/GetCityNo"
+        intent: /sys/aimylogic/ru/city || toState = "/GetCity"
+        event: noMatch || toState = "./"
