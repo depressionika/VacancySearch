@@ -7,7 +7,7 @@ theme: /
             $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", {
             query: {
                 "salary": $session.salary,
-                "text": $session.profession 
+                "text": "$session.profession" 
             }
                 });
         # Отправляем запрос на внешний API для поиска вакансий
