@@ -17,22 +17,20 @@ theme: /
             vars = [{"name":"position","value":"$httpResponse.position"},{"name":"company","value":"$httpResponse.company"},{"name":"location","value":"$httpResponse.location"},{"name":"from_salary","value":"$httpResponse.from_salary"},{"name":"to_salary","value":"$httpResponse.to_salary"},{"name":"currency","value":"$httpResponse.currency"}]
 
     state: Найденные вакансии
-        event: noMatch || toState = "./"
-        a: |
-            Найденные вакансии:
-            Профессия: {{$session.position}}
-            Компания: {{$session.company}}
-            Город: {{$session.location}}
-            Зарплата: от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}
-    
-        htmlEnabled = true
-        html = |
-            <b>Найденные вакансии:</b><br>
-            <b>Профессия:</b> {{$session.position}}<br>
-            <b>Компания:</b> {{$session.company}}<br>
-            <b>Город:</b> {{$session.location}}<br>
-            <b>Зарплата:</b> от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}<br>
-            
+    event: noMatch || toState = "./"
+    a: |
+        Найденные вакансии:
+        Профессия: {{$session.position}}
+        Компания: {{$session.company}}
+        Город: {{$session.location}}
+        Зарплата: от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}
+
+    # Теперь используем правильное оформление для HTML
+    fulfillmentMessage:
+        - text:
+            text:
+                - "Найденные вакансии:<br><b>Профессия:</b> {{$session.position}}<br><b>Компания:</b> {{$session.company}}<br><b>Город:</b> {{$session.location}}<br><b>Зарплата:</b> от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}"
+                
     state: вывод
         a: {{$session.profession}}
             {{$session.city}}
