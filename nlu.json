@@ -12,7 +12,8 @@
     "extendedSettings" : {
       "classificationAlgorithmVersion" : 1.0,
       "tokenizerEngine" : "mystem",
-      "useShared" : false
+      "useShared" : true,
+      "zflPatternsEnabled" : true
     },
     "shared" : false,
     "validation" : {
@@ -105,6 +106,55 @@
     "slots" : [ ],
     "priority" : 0
   }, {
+    "path" : "/Я не хочу указывать город",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "не важно"
+    }, {
+      "text" : "любой город"
+    }, {
+      "text" : "в любом"
+    }, {
+      "text" : "Я не хочу указывать город"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/Любом",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Любом"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "priority" : 0
+  }, {
+    "path" : "/любой город",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "любой город"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "priority" : 0
+  }, {
+    "path" : "/Новый интент",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "priority" : 0
+  }, {
     "path" : "/пока",
     "enabled" : true,
     "shared" : false,
@@ -120,6 +170,8 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
+      "text" : "здарова"
+    }, {
       "text" : "привет"
     }, {
       "text" : "ку"
@@ -163,6 +215,30 @@
     },
     "patterns" : [ ],
     "slots" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/Зарплата",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "около 250000"
+    }, {
+      "text" : "около 20к"
+    }, {
+      "text" : "350.000р"
+    }, {
+      "text" : "20.000р"
+    }, {
+      "text" : "50к"
+    }, {
+      "text" : "100000р"
+    }, {
+      "text" : "200000"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
     "priority" : 0
   } ],
   "entities" : [ {
