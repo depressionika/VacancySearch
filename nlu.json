@@ -23,7 +23,7 @@
     }
   },
   "intents" : [ {
-    "path" : "/Location",
+    "path" : "/jobSearchLocation-yes_usersays_ru",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -58,7 +58,7 @@
     "slots" : [ ],
     "priority" : 0
   }, {
-    "path" : "/Profession",
+    "path" : "/jobSearchProfession-yes_usersays_ru",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {

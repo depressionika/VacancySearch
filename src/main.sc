@@ -1,5 +1,5 @@
 
-module = sys.zb-common
+
 theme: /
 
 # Начало диалога
