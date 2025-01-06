@@ -23,7 +23,7 @@
     }
   },
   "intents" : [ {
-    "path" : "/jobSearchLocation-yes_usersays_ru",
+    "path" : "/Location",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -55,33 +55,10 @@
       "refs" : [ ]
     },
     "patterns" : [ ],
+    "slots" : [ ],
     "priority" : 0
   }, {
-    "path" : "/jobSearchProfession-no_usersays_ru",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "любую"
-    }, {
-      "text" : "любые"
-    }, {
-      "text" : "без названия"
-    }, {
-      "text" : "полный список"
-    }, {
-      "text" : "все вакансии"
-    }, {
-      "text" : "без профессии"
-    }, {
-      "text" : "никакой"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/jobSearchProfession-yes_usersays_ru",
+    "path" : "/Profession",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -125,32 +102,7 @@
       "refs" : [ ]
     },
     "patterns" : [ ],
-    "priority" : 0
-  }, {
-    "path" : "/jobSearchLocation-no_usersays_ru",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ {
-      "text" : "без понятия"
-    }, {
-      "text" : "неа"
-    }, {
-      "text" : "любой город"
-    }, {
-      "text" : "любой"
-    }, {
-      "text" : "все равно"
-    }, {
-      "text" : "не важно"
-    }, {
-      "text" : "нет"
-    }, {
-      "text" : "не хочу"
-    } ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
+    "slots" : [ ],
     "priority" : 0
   }, {
     "path" : "/пока",
