@@ -6,7 +6,7 @@ theme: /
         HttpRequest: 
             url = http://185.242.118.144:8000/find_jobs
             method = POST
-            dataType = 
+            dataType = json
             body = {
                     "salary": {{$session.salary}},
                     "text": "{{$session.profession}}"
