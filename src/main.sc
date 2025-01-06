@@ -6,21 +6,21 @@ theme: /
         q!: * найти работу * 
         script:
             # Отправляем запрос на внешний API для поиска вакансий
-            $vacancies.response = $http.post("http://185.242.118.144:8000/find_jobs", {
+            $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", {
                 query: {
                     salary: $session.salary,
                     text: $session.profession 
                 }
             });
             
-        if: $vacancies.response.isOk
+        if: $temp.response.isOk
             # Если запрос успешен, выводим вакансии
             a: |
                 Вот несколько вакансий для тебя:
-                Профессия: {{$vacancies.response.data.position}}
-                Компания: {{$vacancies.response.data.company}}
-                Город: {{$vacancies.response.data.location}}
-                Зарплата: от {{$vacancies.response.data.from_salary}} до {{$vacancies.response.data.to_salary}} {{$vacancies.response.data.currency}}
+                Профессия: {{$temp.response.data.position}}
+                Компания: {{$temp.response.data.company}}
+                Город: {{$temp.response.data.location}}
+                Зарплата: от {{$temp.response.data.from_salary}} до {{$temp.response.data.to_salary}} {{$temp.response.data.currency}}
         else:
             # Если запрос не успешен, выводим ошибку
             a: Не удалось найти вакансии. Попробуй ещё раз.
