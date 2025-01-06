@@ -17,7 +17,7 @@ theme: /
             vars = [{"name":"position","value":"$httpResponse.position"},{"name":"company","value":"$httpResponse.company"},{"name":"location","value":"$httpResponse.location"},{"name":"from_salary","value":"$httpResponse.from_salary"},{"name":"to_salary","value":"$httpResponse.to_salary"},{"name":"currency","value":"$httpResponse.currency"}]
 
     state: Найденные вакансии
-    event: noMatch || toState = "./"
+        event: noMatch || toState = "./"
         a: |
             Найденные вакансии:
             Профессия: {{$session.position}}
