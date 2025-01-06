@@ -1,6 +1,42 @@
 require: slotfilling/slotFilling.sc
   module = sys.zb-common
 theme: /
+    
+    state: NewState
+        HttpRequest: 
+            url = http://185.242.118.144:8000/find_jobs
+            method = POST
+            dataType = 
+            body = {
+                    "salary": {{$session.salary}},
+                    "text": "{{$session.profession}}"
+                }
+            okState = /Найденные вакансии
+            timeout = 0
+            headers = []
+            vars = [{"name":"position","value":"$httpResponse.position"},{"name":"company","value":"$httpResponse.company"},{"name":"location","value":"$httpResponse.location"},{"name":"from_salary","value":"$httpResponse.from_salary"},{"name":"to_salary","value":"$httpResponse.to_salary"},{"name":"currency","value":"$httpResponse.currency"}]
+
+    state: Найденные вакансии
+        event: noMatch || toState = "./"
+        a: |
+            Найденные вакансии:
+            Профессия: {{$session.position}}
+            Компания: {{$session.company}}
+            Город: {{$session.location}}
+            Зарплата: от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}
+    
+        htmlEnabled = true
+        html = |
+            <b>Найденные вакансии:</b><br>
+            <b>Профессия:</b> {{$session.position}}<br>
+            <b>Компания:</b> {{$session.company}}<br>
+            <b>Город:</b> {{$session.location}}<br>
+            <b>Зарплата:</b> от {{$session.from_salary}} до {{$session.to_salary}} {{$session.currency}}<br>
+            
+    state: вывод
+        a: {{$session.profession}}
+            {{$session.city}}
+            {{$session.salary}} || htmlEnabled = true, html = "{{$session.profession}}<br>{{$session.city}}<br>{{$session.salary}}"
 
     state: Start
         q!: $regex</start>
@@ -57,26 +93,3 @@ theme: /
             minValue = 5000
             maxValue = 10000000
             actions = 
-
-    state: Найденные вакансии
-        event: noMatch || toState = "./"
-        a: Найденные вакансии:Профессия: "{{$session.position}}"Компания: {{$session.company}}Город: {{$session.location}}{{$session.from_salary}}{{$session.to_salary}}{{$session.currency}} || htmlEnabled = true, html = "Найденные вакансии:<br>Профессия: "{{$session.position}}"<br>Компания: {{$session.company}}<br>Город: {{$session.location}}<br>{{$session.from_salary}}<br>{{$session.to_salary}}<br>{{$session.currency}}"
-
-    state: NewState
-        HttpRequest: 
-            url = http://185.242.118.144:8000/find_jobs
-            method = POST
-            dataType = 
-            body = {
-                    "salary": {{$session.salary}},
-                    "text": "{{$session.profession}}"
-                }
-            okState = /Найденные вакансии
-            timeout = 0
-            headers = []
-            vars = [{"name":"position","value":"$httpResponse.position"},{"name":"company","value":"$httpResponse.company"},{"name":"location","value":"$httpResponse.location"},{"name":"from_salary","value":"$httpResponse.from_salary"},{"name":"to_salary","value":"$httpResponse.to_salary"},{"name":"currency","value":"$httpResponse.currency"}]
-
-    state: вывод
-        a: {{$session.profession}}
-            {{$session.city}}
-            {{$session.salary}} || htmlEnabled = true, html = "{{$session.profession}}<br>{{$session.city}}<br>{{$session.salary}}"
