@@ -3,7 +3,6 @@ require: slotfilling/slotFilling.sc
 theme: /
     
     state: NewState
-        q!: * найти работу * 
         script:
             # Отправляем запрос на внешний API для поиска вакансий
             $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", {
