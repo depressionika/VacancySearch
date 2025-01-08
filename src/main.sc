@@ -82,10 +82,10 @@ theme: /
             then = /проверка_города
 
     state: проверка_города
-        q!: * [в] $city *
+        q!: * [в] $City *
         script:
             # Формирование запроса к VK API
-            $temp.response = $http.get("https://api.vk.com/method/database.getCities?country_id=1&q=" + $parseTree._city.name + "&access_token=c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3&v=5.131");
+            $temp.response = $http.get("https://api.vk.com/method/database.getCities?country_id=1&q=" + $parseTree._City.name + "&access_token=c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3&v=5.131");
 
         if: $temp.response.isOk
             if: $temp.response.data.response.items.length > 0
@@ -97,7 +97,7 @@ theme: /
                 a: Город найден! Продолжаем. Вот что нашлось: {{ $temp.cityList }}
                 go!: /Зарплата
             else:
-                a: Город "{{ $parseTree._city.name }}" не найден. Попробуйте снова.
+                a: Город "{{ $parseTree._City.name }}" не найден. Попробуйте снова.
                 go!: /проверка_города
         else:
             a: Не удалось проверить город. Попробуйте позже.
