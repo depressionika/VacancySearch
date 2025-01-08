@@ -88,8 +88,8 @@ theme: /
                 path: "/Какой город",
                 name: "проверка города",
                 handler: function($context) {
-                    const city = $context.session.city;
-                    const cityRegex = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;  // Проверка на буквы, пробелы и дефисы
+                    var city = $context.session.city;
+                    var cityRegex = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;  // Проверка на буквы, пробелы и дефисы
                     if (!city || !cityRegex.test(city)) {
                         $context.state = "/ошибка_города";
                         $context.output = "Пожалуйста, введите правильное название города.";
