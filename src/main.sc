@@ -85,18 +85,26 @@ theme: /
         HttpRequest:
             url = https://api.vk.com/method/database.getCities
             method = GET
-            param:
-                name = country_id
-                value = 1
-            param:
-                name = q
-                value = $session.city
-            param:
-                name = access_token
-                value = c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3
-            param:
-                name = v
-                value = 5.131
+            body = 
+            headers = []
+            vars = [
+                {
+                    "name" = "country_id"
+                    "value" = "1"
+                },
+                {
+                    "name" = "q"
+                    "value" = $session.city
+                },
+                {
+                    "name" = "access_token"
+                    "value" = "c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3"
+                },
+                {
+                    "name" = "v"
+                    "value" = "5.131"
+                }
+            ]
             okState = /город_найден
             errorState = /ошибка_города
     
@@ -109,6 +117,7 @@ theme: /
         script:
             $context.output = "Такого города нет. Попробуйте снова.";
         go!: /проверка_города
+
 
 
     state: Зарплата
