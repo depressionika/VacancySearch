@@ -30,7 +30,7 @@ theme: /
                     $temp.vacancyMessages += "Зарплата: от " + $temp.response.data[$temp.index].from_salary + 
                         " до " + $temp.response.data[$temp.index].to_salary + 
                         " " + $temp.response.data[$temp.index].currency + "\n";
-                    $temp.vacancyMessages += "Ссылка: " + $temp.response.data[$temp.index].alternate_url + "\n";
+                    $temp.vacancyMessages += "Ссылка: " + $temp.response.data[$temp.index].link + "\n";
                     $temp.index++;
                 }
             a: |
