@@ -6,19 +6,19 @@ theme: /
         script:
             # Отправляем запрос на внешний API для поиска вакансий
             $temp.response = $http.post(
-                "http://185.242.118.144:8000/find_jobs",
-                JSON.stringify({
-                    salary: $session.salary,
-                    text: $session.profession
-                }),
+                "http://185.242.118.144:8000/find_jobs", 
                 {
+                    body: {
+                        salary: $session.salary,
+                        text: $session.profession
+                    },
                     headers: {
                         "Content-Type": "application/json"
                     }
                 }
             );
         if: $temp.response.isOk && $temp.response.data.length > 0
-            # Если запрос успешен и вакансии найдены, выводим их
+            # Если запрос успешен и есть вакансии
             script:
                 $temp.vacancies = $temp.response.data;
             a: |
@@ -31,8 +31,9 @@ theme: /
                 Зарплата: от {{vacancy.from_salary}} до {{vacancy.to_salary}} {{vacancy.currency}}
                 {{/each}}
         else:
-            # Если запрос не успешен или вакансии не найдены
+            # Если вакансии не найдены или произошла ошибка
             a: Не удалось найти вакансии. Попробуй ещё раз.
+
 
 
 
