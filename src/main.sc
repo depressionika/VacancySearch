@@ -17,25 +17,19 @@ theme: /
                     }
                 }
             );
+    
         if: $temp.response.isOk && $temp.response.data.length > 0
-            # Если запрос успешен и есть вакансии
             script:
-                $temp.vacancies = $temp.response.data;
+                $temp.vacancyMessages = "";
+                for (let vacancy of $temp.response.data) {
+                    $temp.vacancyMessages += `---\nПрофессия: ${vacancy.position}\nКомпания: ${vacancy.company}\nГород: ${vacancy.location}\nЗарплата: от ${vacancy.from_salary} до ${vacancy.to_salary} ${vacancy.currency}\n`;
+                }
             a: |
                 Вот несколько вакансий для тебя:
-                {{#each $temp.vacancies as vacancy}}
-                ---
-                Профессия: {{vacancy.position}}
-                Компания: {{vacancy.company}}
-                Город: {{vacancy.location}}
-                Зарплата: от {{vacancy.from_salary}} до {{vacancy.to_salary}} {{vacancy.currency}}
-                {{/each}}
+                {{$temp.vacancyMessages}}
         else:
             # Если вакансии не найдены или произошла ошибка
             a: Не удалось найти вакансии. Попробуй ещё раз.
-
-
-
 
     state: Start
         q!: $regex</start>
