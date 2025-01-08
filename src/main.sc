@@ -75,16 +75,44 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Какой город
+        a = В каком городе вы ищете работу?
         InputText:
-            prompt = В каком городе?
             varName = city
-            htmlEnabled = false
-        then:
-            actions =
-                - action: /sys/aimylogic/ru/city
-            intent: /sys/aimylogic/ru/city
-            event: noMatch
-            toState: "/Зарплата"  # Переход в следующий статус
+            prompt = Пожалуйста, укажите город.
+            then = /проверка_города
+
+    state: проверка_города
+        script:
+            $jsapi.bind({
+                type = "postProcess",
+                path = "/Какой город",
+                name = "проверка города",
+                handler = function($context) {
+                    const city = $context.session.city;
+                    const cityRegex = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;  // Проверка на буквы, пробелы и дефисы
+                    if (!city || !cityRegex.test(city)) {
+                        $context.state = "/ошибка_города";
+                        $context.output = "Пожалуйста, введите правильное название города.";
+                    } else {
+                        $context.state = "/Зарплата";
+                    }
+                }
+            });
+        go! = /Зарплата
+        @IntentGroup:
+            {
+              "boundsTo" = "/проверка_города",
+              "actions" = [{
+                "buttons" = [],
+                "type" = "buttons"
+              }],
+              "global" = false
+            }
+    
+    state: ошибка_города
+        a = Это не похоже на название города. Пожалуйста, укажите правильный город.
+        InputText:
+    go! = /Какой город
 
     state: Зарплата
         InputNumber: 
