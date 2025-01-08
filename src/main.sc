@@ -77,11 +77,15 @@ theme: /
     state: Какой город
         q!: * [в] $City *
         script:
-            $session.City = $parseTree._City.name  # Сохраняем город в сессию
+            # Проверим, что город указан
+            if: $parseTree._City.name
+                $session.City = $parseTree._City.name  # Сохраняем город в сессии
+            else:
+                a: Пожалуйста, укажите город для поиска.
+                go!: /Какой город
         a: В каком городе вы ищете работу?
         go!: /проверка_города
-
-
+    
     state: проверка_города
         q!: * [в] $session.City *  # Используем город из сессии
         script:
