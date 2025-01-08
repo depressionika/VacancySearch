@@ -84,8 +84,6 @@ theme: /
     state: проверка_города
         script:
         var city = $session.city;
-
-        // Запрос к VK API
         HttpRequest:
             url = https://api.vk.com/method/database.getCities
             method = GET
@@ -108,7 +106,6 @@ theme: /
         script:
             $context.output = "Такого города нет. Попробуйте снова.";
         go!: /проверка_города
-
 
     state: Зарплата
         InputNumber: 
