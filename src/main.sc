@@ -82,30 +82,34 @@ theme: /
             then = /проверка_города
 
     state: проверка_города
-        script:
-        var city = $session.city;
         HttpRequest:
             url = https://api.vk.com/method/database.getCities
             method = GET
-            params = 
-                {
-                "country_id": 1,
-                "q": city,
-                "access_token": "c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3",
-                "v": "5.131" }
+            param:
+                name = country_id
+                value = 1
+            param:
+                name = q
+                value = $session.city
+            param:
+                name = access_token
+                value = c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3
+            param:
+                name = v
+                value = 5.131
             okState = /город_найден
             errorState = /ошибка_города
-
+    
     state: город_найден
         script:
             $context.output = "Город найден! Продолжаем.";
         go!: /Зарплата
-        
-
+    
     state: ошибка_города
         script:
             $context.output = "Такого города нет. Попробуйте снова.";
         go!: /проверка_города
+
 
     state: Зарплата
         InputNumber: 
