@@ -71,36 +71,36 @@ theme: /
             html = 
             htmlEnabled = false
             actions = 
-            then = /Какой город
+            then = /запрос_города
         event: noMatch || toState = "./"
     
-    state: Какой город
+    state: запрос_города
         q!: * [в] $City *
         script:
             # Проверим, что город указан
-            if ($parseTree._City.name)
-                $session.City = $parseTree._City.name  # Сохраняем город в сессии
+            if: $parseTree.City.name
+                $session.city = $parseTree.City.name  # Сохраняем город в сессии
             else:
                 a: Пожалуйста, укажите город для поиска.
-                go!: /Какой город
+                go!: /запрос_города
         a: В каком городе вы ищете работу?
         go!: /проверка_города
     
     state: проверка_города
-        q!: * [в] $session.City *  # Используем город из сессии
+        q!: * [в] $session.city *  # Используем город из сессии
         script:
             # Формируем запрос к VK API с использованием города из сессии
             $temp.response = $http.get("https://api.vk.com/method/database.getCities", {
                 params: {
                     country_id: 1,
-                    q: $session.City,  # Запрашиваем город, сохраненный в сессии
+                    q: $session.city,  # Запрашиваем город, сохраненный в сессии
                     access_token: "c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3",
                     v: "5.131"
                 }
             });
     
-        if ($temp.response.isOk)
-            if ($temp.response.data.response.items.length > 0)
+        if: $temp.response.isOk
+            if: $temp.response.data.response.items.length > 0
                 script:
                     # Если город найден
                     $temp.cityList = $temp.response.data.response.items.map(function(item) {
@@ -109,10 +109,11 @@ theme: /
                 a: Город найден! Продолжаем. Вот что нашлось: {{ $temp.cityList }}
                 go!: /Зарплата
             else:
-                a: Город "{{ $session.City }}" не найден. Попробуйте снова.
+                a: Город "{{ $session.city }}" не найден. Попробуйте снова.
                 go!: /проверка_города
         else:
             a: Не удалось проверить город. Попробуйте позже.
+
 
 
     state: Зарплата
