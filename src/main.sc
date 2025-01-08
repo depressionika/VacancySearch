@@ -78,7 +78,7 @@ theme: /
         q!: * [в] $City *
         script:
             # Проверим, что город указан
-            if: $parseTree._City.name
+            if ($parseTree._City.name)
                 $session.City = $parseTree._City.name  # Сохраняем город в сессии
             else:
                 a: Пожалуйста, укажите город для поиска.
@@ -99,8 +99,8 @@ theme: /
                 }
             });
     
-        if: $temp.response.isOk
-            if: $temp.response.data.response.items.length > 0
+        if ($temp.response.isOk)
+            if ($temp.response.data.response.items.length > 0)
                 script:
                     # Если город найден
                     $temp.cityList = $temp.response.data.response.items.map(function(item) {
@@ -113,6 +113,7 @@ theme: /
                 go!: /проверка_города
         else:
             a: Не удалось проверить город. Попробуйте позже.
+
 
     state: Зарплата
         InputNumber: 
