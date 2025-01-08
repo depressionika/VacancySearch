@@ -4,10 +4,18 @@ theme: /
     
     state: NewState
         script:
-            $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", {
+            $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", 
+            {
                 salary: $session.salary,
-                text: $session.profession 
-            });
+                text: $session.profession
+            }, 
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
         # Отправляем запрос на внешний API для поиска вакансий
         if: $temp.response.isOk
             # Если запрос успешен, выводим вакансии
