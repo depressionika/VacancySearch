@@ -10,7 +10,7 @@ theme: /
                 {
                     body: {
                         salary: $session.salary,
-                        text: $session.profession
+                        text: $session.profession + " " + $session.location
                     },
                     headers: {
                         "Content-Type": "application/json"
