@@ -10,7 +10,7 @@ theme: /
                 {
                     body: {
                         salary: $session.salary,
-                        text: $session.profession + " " + $session.location
+                        text: $session.profession + " " + $session.city
                     },
                     headers: {
                         "Content-Type": "application/json"
@@ -37,7 +37,7 @@ theme: /
                 {{$temp.vacancyMessages}}
         else:
             # Если вакансии не найдены или произошла ошибка
-            a: Не удалось найти вакансии. Попробуй ещё раз.
+            a: Не удалось найти вакансий по вашим параметрам. Попробуй ещё раз.
 
     state: Start
         q!: $regex</start>
