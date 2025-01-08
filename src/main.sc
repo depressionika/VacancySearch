@@ -4,29 +4,26 @@ theme: /
     
     state: NewState
         script:
-            $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", 
-            {
+            # Отправляем запрос на внешний API для поиска вакансий
+            $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", {
                 salary: $session.salary,
-                text: $session.profession
-            }, 
-            {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-
-        # Отправляем запрос на внешний API для поиска вакансий
-        if: $temp.response.isOk
-            # Если запрос успешен, выводим вакансии
+                text: $session.profession 
+            });
+        if: $temp.response.isOk && $temp.response.data.length > 0
+            # Если запрос успешен и вакансии найдены, выводим их
+            script:
+                $temp.vacancies = $temp.response.data;
             a: |
                 Вот несколько вакансий для тебя:
-                Профессия: {{$temp.response.data.position}}
-                Компания: {{$temp.response.data.company}}
-                Город: {{$temp.response.data.location}}
-                Зарплата: от {{$temp.response.data.from_salary}} до {{$temp.response.data.to_salary}} {{$temp.response.data.currency}}
-        else: 
-            # Если запрос не успешен, выводим ошибку
+                {{#each $temp.vacancies as vacancy}}
+                ---
+                Профессия: {{vacancy.position}}
+                Компания: {{vacancy.company}}
+                Город: {{vacancy.location}}
+                Зарплата: от {{vacancy.from_salary}} до {{vacancy.to_salary}} {{vacancy.currency}}
+                {{/each}}
+        else:
+            # Если запрос не успешен или вакансии не найдены
             a: Не удалось найти вакансии. Попробуй ещё раз.
 
     state: Start
