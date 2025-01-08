@@ -5,10 +5,14 @@ theme: /
     state: NewState
         script:
             # Отправляем запрос на внешний API для поиска вакансий
-            $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", {
-                salary: $session.salary,
-                text: $session.profession 
-            });
+            $temp.response = $http.post("http://185.242.118.144:8000/find_jobs", 
+                JSON.stringify({
+                    salary: $session.salary,
+                    text: $session.profession
+                }), 
+                {
+                    "Content-Type": "application/json"
+                });
         if: $temp.response.isOk && $temp.response.data.length > 0
             # Если запрос успешен и вакансии найдены, выводим их
             script:
@@ -25,6 +29,7 @@ theme: /
         else:
             # Если запрос не успешен или вакансии не найдены
             a: Не удалось найти вакансии. Попробуй ещё раз.
+
 
     state: Start
         q!: $regex</start>
