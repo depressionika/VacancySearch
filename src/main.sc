@@ -87,12 +87,12 @@ theme: /
         HttpRequest:
             url = https://api.vk.com/method/database.getCities
             method = GET
-            params = {
-                "country_id": 1,  // Россия
+            params = 
+                {
+                "country_id": 1,
                 "q": city,
-                "access_token": "ВАШ_ТОКЕН",
-                "v": "5.131"
-            }
+                "access_token": "c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3",
+                "v": "5.131" }
             okState = /город_найден
             errorState = /ошибка_города
 
