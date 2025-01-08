@@ -23,8 +23,13 @@ theme: /
                 $temp.vacancyMessages = "";
                 $temp.index = 0;
                 while ($temp.index < $temp.response.data.length) {
-                    let vacancy = $temp.response.data[$temp.index];
-                    $temp.vacancyMessages += `---\nПрофессия: ${vacancy.position}\nКомпания: ${vacancy.company}\nГород: ${vacancy.location}\nЗарплата: от ${vacancy.from_salary} до ${vacancy.to_salary} ${vacancy.currency}\n`;
+                    $temp.vacancyMessages += "---\n";
+                    $temp.vacancyMessages += "Профессия: " + $temp.response.data[$temp.index].position + "\n";
+                    $temp.vacancyMessages += "Компания: " + $temp.response.data[$temp.index].company + "\n";
+                    $temp.vacancyMessages += "Город: " + $temp.response.data[$temp.index].location + "\n";
+                    $temp.vacancyMessages += "Зарплата: от " + $temp.response.data[$temp.index].from_salary + 
+                        " до " + $temp.response.data[$temp.index].to_salary + 
+                        " " + $temp.response.data[$temp.index].currency + "\n";
                     $temp.index++;
                 }
             a: |
