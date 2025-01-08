@@ -82,36 +82,33 @@ theme: /
             then = /проверка_города
 
     state: проверка_города
-        script:
-            $jsapi.bind({
-                type: "postProcess",
-                path: "/Какой город",
-                name: "проверка города",
-                handler: function($context) {
-                    var city = $context.session.city;
-                    var cityRegex = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;  // Проверка на буквы, пробелы и дефисы
-                    if (!city || !cityRegex.test(city)) {
-                        $context.state = "/ошибка_города";
-                        $context.output = "Пожалуйста, введите правильное название города.";
-                    } else {
-                        $context.state = "/Зарплата";
-                    }
-                }
-            });
-        go!: /Зарплата
-        @IntentGroup:
-            {
-              "boundsTo" = "/проверка_города",
-              "actions" = [{
-                "buttons" = [],
-                "type" = "buttons"
-              }],
-              "global" = false
+    script:
+        var city = $session.city;
+
+        // Запрос к VK API
+        HttpRequest:
+            url = https://api.vk.com/method/database.getCities
+            method = GET
+            params = {
+                "country_id": 1,  // Россия
+                "q": city,
+                "access_token": "ВАШ_ТОКЕН",
+                "v": "5.131"
             }
-    
+            okState = /город_найден
+            errorState = /ошибка_города
+
+    state: город_найден
+        script:
+            $context.output = "Город найден! Продолжаем.";
+        go!: /Зарплата
+        
+
     state: ошибка_города
-        a: Это не похоже на название города. Пожалуйста, укажите правильный город.
-        go!: /Какой город
+    script:
+        $context.output = "Такого города нет. Попробуйте снова.";
+    go!: /проверка_города
+
 
     state: Зарплата
         InputNumber: 
