@@ -75,20 +75,21 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Какой город
+        q!: * [в] $City *
+        script:
+            $session.City = $parseTree._City.name  # Сохраняем город в сессию
         a: В каком городе вы ищете работу?
-        InputText:
-            varName = city
-            prompt = Пожалуйста, укажите город.
-            then = /проверка_города
+        go!: /проверка_города
+
 
     state: проверка_города
-        q!: * [в] $session.City *
+        q!: * [в] $session.City *  # Используем город из сессии
         script:
-            # Формирование запроса к VK API
+            # Формируем запрос к VK API с использованием города из сессии
             $temp.response = $http.get("https://api.vk.com/method/database.getCities", {
                 params: {
                     country_id: 1,
-                    q: $session.City,
+                    q: $session.City,  # Запрашиваем город, сохраненный в сессии
                     access_token: "c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3",
                     v: "5.131"
                 }
@@ -108,7 +109,6 @@ theme: /
                 go!: /проверка_города
         else:
             a: Не удалось проверить город. Попробуйте позже.
-
 
     state: Зарплата
         InputNumber: 
