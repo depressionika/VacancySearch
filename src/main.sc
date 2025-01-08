@@ -75,7 +75,7 @@ theme: /
         event: noMatch || toState = "./"
     
     state: запрос_города
-        q!: * [в] $City *
+        q!: $City
         script:
             # Проверим, что город указан
             if: $parseTree.City.name
