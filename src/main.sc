@@ -76,11 +76,11 @@ theme: /
     
     state: Какой город
         InputText:
-            prompt: В каком городе?
-            varName: city
-            htmlEnabled: false
+            prompt = В каком городе?
+            varName = city
+            htmlEnabled = false
         then:
-            actions:
+            actions =
                 - action: /sys/aimylogic/ru/city
             intent: /sys/aimylogic/ru/city
             event: noMatch
