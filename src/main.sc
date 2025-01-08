@@ -82,7 +82,7 @@ theme: /
             then = /проверка_города
 
     state: проверка_города
-        q!: * [в] $City *
+        q!: * [в] $session.City *
         script:
             # Формирование запроса к VK API
             $temp.response = $http.get("https://api.vk.com/method/database.getCities", {
@@ -108,6 +108,7 @@ theme: /
                 go!: /проверка_города
         else:
             a: Не удалось проверить город. Попробуйте позже.
+
 
     state: Зарплата
         InputNumber: 
