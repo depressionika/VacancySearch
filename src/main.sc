@@ -21,8 +21,11 @@ theme: /
         if: $temp.response.isOk && $temp.response.data.length > 0
             script:
                 $temp.vacancyMessages = "";
-                for (let vacancy of $temp.response.data) {
+                $temp.index = 0;
+                while ($temp.index < $temp.response.data.length) {
+                    let vacancy = $temp.response.data[$temp.index];
                     $temp.vacancyMessages += `---\nПрофессия: ${vacancy.position}\nКомпания: ${vacancy.company}\nГород: ${vacancy.location}\nЗарплата: от ${vacancy.from_salary} до ${vacancy.to_salary} ${vacancy.currency}\n`;
+                    $temp.index++;
                 }
             a: |
                 Вот несколько вакансий для тебя:
