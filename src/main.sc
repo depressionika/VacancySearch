@@ -82,7 +82,7 @@ theme: /
             then = /проверка_города
 
     state: проверка_города
-    script:
+        script:
         var city = $session.city;
 
         // Запрос к VK API
@@ -105,9 +105,9 @@ theme: /
         
 
     state: ошибка_города
-    script:
-        $context.output = "Такого города нет. Попробуйте снова.";
-    go!: /проверка_города
+        script:
+            $context.output = "Такого города нет. Попробуйте снова.";
+        go!: /проверка_города
 
 
     state: Зарплата
