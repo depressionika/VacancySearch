@@ -82,43 +82,25 @@ theme: /
             then = /проверка_города
 
     state: проверка_города
-        HttpRequest:
-            url = https://api.vk.com/method/database.getCities
-            method = GET
-            body = 
-            headers = []
-            vars = [
-                {
-                    "name" = "country_id"
-                    "value" = "1"
-                },
-                {
-                    "name" = "q"
-                    "value" = $session.city
-                },
-                {
-                    "name" = "access_token"
-                    "value" = "c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3"
-                },
-                {
-                    "name" = "v"
-                    "value" = "5.131"
-                }
-            ]
-            okState = /город_найден
-            errorState = /ошибка_города
-    
-    state: город_найден
+        q!: * [в] $city *
         script:
-            $context.output = "Город найден! Продолжаем.";
-        go!: /Зарплата
-    
-    state: ошибка_города
-        script:
-            $context.output = "Такого города нет. Попробуйте снова.";
-        go!: /проверка_города
+            # Формирование запроса к VK API
+            $temp.response = $http.get("https://api.vk.com/method/database.getCities?country_id=1&q=" + $parseTree._city.name + "&access_token=c3ef704dc3ef704dc3ef704d11c0c84230cc3efc3ef704da4914449d51cf41c57b92eb3&v=5.131");
 
-
+        if: $temp.response.isOk
+            if: $temp.response.data.response.items.length > 0
+                script:
+                    # Если город найден
+                    $temp.cityList = $temp.response.data.response.items.map(function(item) {
+                        return item.title;
+                    }).join(", ");
+                a: Город найден! Продолжаем. Вот что нашлось: {{ $temp.cityList }}
+                go!: /Зарплата
+            else:
+                a: Город "{{ $parseTree._city.name }}" не найден. Попробуйте снова.
+                go!: /проверка_города
+        else:
+            a: Не удалось проверить город. Попробуйте позже.
 
     state: Зарплата
         InputNumber: 
