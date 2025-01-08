@@ -75,7 +75,7 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Какой город
-        a = В каком городе вы ищете работу?
+        a: В каком городе вы ищете работу?
         InputText:
             varName = city
             prompt = Пожалуйста, укажите город.
@@ -84,10 +84,10 @@ theme: /
     state: проверка_города
         script:
             $jsapi.bind({
-                type = "postProcess",
-                path = "/Какой город",
-                name = "проверка города",
-                handler = function($context) {
+                type: "postProcess",
+                path: "/Какой город",
+                name: "проверка города",
+                handler: function($context) {
                     const city = $context.session.city;
                     const cityRegex = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;  // Проверка на буквы, пробелы и дефисы
                     if (!city || !cityRegex.test(city)) {
@@ -110,7 +110,7 @@ theme: /
             }
     
     state: ошибка_города
-        a = Это не похоже на название города. Пожалуйста, укажите правильный город.
+        a: Это не похоже на название города. Пожалуйста, укажите правильный город.
         go!: /Какой город
 
     state: Зарплата
