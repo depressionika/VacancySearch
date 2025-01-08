@@ -75,16 +75,16 @@ theme: /
         event: noMatch || toState = "./"
     
     state: Какой город
-    InputText:
-        prompt: В каком городе?
-        varName: city
-        htmlEnabled: false
-    then:
-        actions:
-            - action: /sys/aimylogic/ru/city
-        intent: /sys/aimylogic/ru/city
-        event: noMatch
-        toState: "/Зарплата"  # Переход в следующий статус
+        InputText:
+            prompt: В каком городе?
+            varName: city
+            htmlEnabled: false
+        then:
+            actions:
+                - action: /sys/aimylogic/ru/city
+            intent: /sys/aimylogic/ru/city
+            event: noMatch
+            toState: "/Зарплата"  # Переход в следующий статус
 
     state: Зарплата
         InputNumber: 
