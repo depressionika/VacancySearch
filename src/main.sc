@@ -23,6 +23,8 @@ theme: /
         intent!: /Запрос о работе
         a: ваш город {{$parseTree._City}}
                 Какую зарплату вы хотите?
+        script:
+            $session.city = $parseTree._City;
         intent: /Запрос о зарплате || toState = "/Определение зарплаты"
         event: noMatch || toState = "./"
 
@@ -51,8 +53,8 @@ theme: /
             "http://185.242.118.144:8000/find_jobs", 
             {
                 body: {
-                    salary: $session.salary,
-                    text: $session._City
+                    text: $session.city,
+                    salary: $session.salary
                 },
                 headers: {
                     "Content-Type": "application/json"
