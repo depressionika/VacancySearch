@@ -11,11 +11,11 @@ theme: /
     state: Hello
         intent!: /привет
         a: Привет привет
-        intent: /Поиск работы || toState = "/Определение города"
+        intent!: /Поиск работы || toState = "/Определение города"
         event: noMatch || toState = "./"
         
     state: Определение города
-        intent: /Запрос о работе
+        intent!: /Запрос о работе
         a: ваш город {{$parseTree._City.name}}
         event: noMatch || toState = "./"
 
