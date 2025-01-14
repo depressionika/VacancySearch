@@ -1,43 +1,6 @@
 require: slotfilling/slotFilling.sc
   module = sys.zb-common
 theme: /
-    
-    state: NewState
-        script:
-            $temp.response = $http.post(
-            "http://185.242.118.144:8000/find_jobs", 
-            {
-                body: {
-            salary: $session.salary,
-            text: $session.profession + " " + $session.city
-                },
-                headers: {
-            "Content-Type": "application/json"
-                }
-            }
-                );
-        # Отправляем запрос на внешний API для поиска вакансий
-        if: $temp.response.isOk && $temp.response.data.length > 0
-            script:
-                $temp.vacancyMessages = "";
-                $temp.index = 0;
-                while ($temp.index < $temp.response.data.length) {
-                    $temp.vacancyMessages += "---\n";
-                    $temp.vacancyMessages += "Профессия: " + $temp.response.data[$temp.index].position + "\n";
-                    $temp.vacancyMessages += "Компания: " + $temp.response.data[$temp.index].company + "\n";
-                    $temp.vacancyMessages += "Город: " + $temp.response.data[$temp.index].location + "\n";
-                    $temp.vacancyMessages += "Зарплата: от " + $temp.response.data[$temp.index].from_salary + 
-                " до " + $temp.response.data[$temp.index].to_salary + 
-                " " + $temp.response.data[$temp.index].currency + "\n";
-                    $temp.vacancyMessages += "Ссылка: " + $temp.response.data[$temp.index].link + "\n";
-                    $temp.index++;
-                }
-            a: |
-                Вот несколько вакансий для тебя:
-                {{$temp.vacancyMessages}}
-        else: 
-            # Если вакансии не найдены или произошла ошибка
-            a: Не удалось найти вакансий по вашим параметрам. Попробуй ещё раз.
 
     state: Start
         q!: $regex</start>
@@ -48,7 +11,12 @@ theme: /
     state: Hello
         intent!: /привет
         a: Привет привет
-        intent: /Поиск работы || toState = "/Поиск работы"
+        intent: /Поиск работы || toState = "/Определение города"
+        event: noMatch || toState = "./"
+        
+    state: Определение города
+        intent!: /Запрос о работе
+        a: ваш город {{$parseTree._City.name}}
         event: noMatch || toState = "./"
 
     state: Bye
@@ -63,35 +31,5 @@ theme: /
         event!: match
         a: {{$context.intent.answer}}
 
-    state: Поиск работы
-        InputText: 
-            prompt = Какая профессия вам интересна?
-            varName = profession
-            html = 
-            htmlEnabled = false
-            actions = 
-            then = /Какой город
-        event: noMatch || toState = "./"
 
-    state: Какой город
-        event: noMatch || toState = "./"
-        InputText: 
-            prompt = Какой город вас интересует?
-            varName = city
-            html = 
-            htmlEnabled = false
-            then = /Зарплата
-            actions = 
-
-    state: Зарплата
-        InputNumber: 
-            prompt = Желаемая зарплата?
-            varName = salary
-            html = 
-            htmlEnabled = false
-            failureMessage = [""]
-            failureMessageHtml = [""]
-            then = /NewState
-            minValue = 5000
-            maxValue = 10000000
-            actions = 
+    

@@ -88,13 +88,87 @@
     },
     "patterns" : [ ],
     "priority" : 0
+  }, {
+    "path" : "/Запрос о работе",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "Я живу в городе Иркутск"
+    }, {
+      "text" : "Мой город Иркутск"
+    }, {
+      "text" : "Я живу в городе @City"
+    }, {
+      "text" : "Моя профессия @Профессия"
+    } ],
+    "classificationRules" : {
+      "refs" : [ {
+        "entityName" : "classRule_7617",
+        "predicate" : "CONTAINS"
+      } ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "City",
+      "entity" : "mystem.geo",
+      "required" : false,
+      "prompts" : [ ]
+    }, {
+      "name" : "Profession",
+      "entity" : "Профессия",
+      "required" : false,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
   } ],
-  "entities" : [ ],
-  "enabledSystemEntities" : [ "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
+  "entities" : [ {
+    "entity" : {
+      "name" : "Профессия",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ {
+      "type" : "synonyms",
+      "rule" : [ "программист", "разработчик ПО" ],
+      "value" : "{\n\"value\": \"software developer\",\n\"profession_id\": 1\n}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Преподаватель" ],
+      "value" : "{\n  \"value\": \"teacher\",\n  \"profession_id\": 2\n}"
+    } ]
+  }, {
+    "entity" : {
+      "name" : "classRule_7617",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : false,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : true
+    },
+    "records" : [ {
+      "type" : "pattern",
+      "rule" : [ "Моя профессия @Профессия" ],
+      "value" : ""
+    } ]
+  } ],
+  "enabledSystemEntities" : [ "mystem.geo", "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
   "spellerDictionary" : [ ],
   "systemEntities" : [ {
     "name" : "mystem.geo",
-    "enabled" : false
+    "enabled" : true
   }, {
     "name" : "mystem.persn",
     "enabled" : false
