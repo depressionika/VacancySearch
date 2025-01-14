@@ -97,15 +97,10 @@
     }, {
       "text" : "Мой город Иркутск"
     }, {
-      "text" : "Я живу в городе @City"
-    }, {
-      "text" : "Моя профессия @Профессия"
+      "text" : "хочу найти работу в городе москва"
     } ],
     "classificationRules" : {
-      "refs" : [ {
-        "entityName" : "classRule_7617",
-        "predicate" : "CONTAINS"
-      } ]
+      "refs" : [ ]
     },
     "patterns" : [ ],
     "slots" : [ {
@@ -116,6 +111,36 @@
     }, {
       "name" : "Profession",
       "entity" : "Профессия",
+      "required" : false,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
+  }, {
+    "path" : "/запрос города",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/Запрос о зарплате",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "двести тысяч рублей"
+    }, {
+      "text" : "100000"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Salary",
+      "entity" : "duckling.amount-of-money",
       "required" : false,
       "prompts" : [ ]
     } ],
@@ -144,27 +169,8 @@
       "rule" : [ "Преподаватель" ],
       "value" : "{\n  \"value\": \"teacher\",\n  \"profession_id\": 2\n}"
     } ]
-  }, {
-    "entity" : {
-      "name" : "classRule_7617",
-      "enabled" : true,
-      "shared" : false,
-      "type" : "annotation",
-      "priority" : 1,
-      "noSpelling" : false,
-      "noMorph" : false,
-      "phoneticSearch" : false,
-      "fuzzySearch" : false,
-      "client" : false,
-      "hidden" : true
-    },
-    "records" : [ {
-      "type" : "pattern",
-      "rule" : [ "Моя профессия @Профессия" ],
-      "value" : ""
-    } ]
   } ],
-  "enabledSystemEntities" : [ "mystem.geo", "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
+  "enabledSystemEntities" : [ "mystem.geo", "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url", "duckling.amount-of-money" ],
   "spellerDictionary" : [ ],
   "systemEntities" : [ {
     "name" : "mystem.geo",
@@ -220,10 +226,6 @@
     "version" : "v2",
     "enabled" : false
   }, {
-    "name" : "duckling.amount-of-money",
-    "version" : "v2",
-    "enabled" : false
-  }, {
     "name" : "duckling.distance",
     "version" : "v2",
     "enabled" : false
@@ -268,6 +270,10 @@
   }, {
     "name" : "zb.number",
     "enabled" : false
+  }, {
+    "name" : "duckling.amount-of-money",
+    "version" : "v2",
+    "enabled" : true
   } ],
   "faq" : [ ],
   "skills" : [ ]
