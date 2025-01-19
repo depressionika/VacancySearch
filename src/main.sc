@@ -17,21 +17,20 @@ theme: /
     state: запрос города
         a: В каком городе вы хотите найти работу?
         buttons:
-            "Не указывать" -> /запрос зарплаты
-        script:
-            $session.profession = "";
+            "Не указывать" -> /Обновление города
         intent: /Запрос о работе || toState = "/Определение города"
         event: noMatch || toState = "./"
 
     state: Определение города
         intent: /Запрос о работе
-        a: ваш город {{$parseTree._City}}
-                Какую зарплату вы хотите?
         script:
             $session.city = $parseTree._City;
-        buttons:
-            "Не указывать" -> /Обновление зп
-        intent: /Запрос о зарплате || toState = "/Определение зарплаты"
+        if: $session.city == undefined
+            a: Я не понял. Вы сказали: {{$request.query}}
+            go!: /запрос города
+        else: 
+            a: ваш город {{$session.city}}
+            go!: /запрос зарплаты
         event: noMatch || toState = "./"
 
     state: Bye
@@ -48,27 +47,30 @@ theme: /
 
     state: Определение зарплаты
         intent!: /Запрос о зарплате
-        a: вы выбрали зарплату {{$parseTree._Salary}}
         script:
             $session.salary = $parseTree._Salary;
-        buttons:
-            "Найти вакансии" -> /NewState
+        if: $session.salary == undefined
+            a: Я не понял. Вы сказали: {{$request.query}}
+            go!: /запрос зарплаты
+        else: 
+            a: вы выбрали зарплату {{$session.salary}}
+            go!: /Запрос параметра
         event: noMatch || toState = "/Инфо"
 
     state: NewState
         script:
             $temp.response = $http.post(
-            "http://185.242.118.144:8000/find_jobs", 
-            {
-                body: {
-            text: $session.city + " " + $session.profession,
-            salary: $session.salary
-                },
-                headers: {
-            "Content-Type": "application/json"
-                }
+                "http://185.242.118.144:8000/find_jobs", 
+                {
+            body: {
+                text: $session.city + " " + $session.profession,
+                salary: $session.salary
+            },
+            headers: {
+                "Content-Type": "application/json"
             }
-                );
+                }
+            );
         # Отправляем запрос на внешний API для поиска вакансий
         if: $temp.response.isOk && $temp.response.data.length > 0
             script:
@@ -95,7 +97,7 @@ theme: /
     state: запрос профессии
         a: Какая профессия вас интересует?
         buttons:
-            "Не указывать" -> /запрос города
+            "Не указывать" -> /обновление профессии
         intent: /запрос о профессии || toState = "/определение профессии"
         event: noMatch || toState = "./"
 
@@ -103,32 +105,60 @@ theme: /
         intent!: /запрос о профессии
         script:
             $session.profession = $parseTree._Profession;
-        if: $session.profession == ""
+        if: $session.profession == undefined
             go!: /запрос профессии
-        a: Вы выбрали профессию {{$parseTree._Profession}}
-        a: В каком городе вы хотите найти работу?
-        buttons:
-            "Не указывать" -> /запрос зарплаты
-        intent: /Запрос о работе || toState = "/Определение города"
+        else: 
+            a: Вы выбрали профессию {{$session.profession}}
+            go!: /запрос города
         event: noMatch || toState = "./"
 
     state: запрос зарплаты
-        a: КАКУЮ зарплату вы хотите?
+        a: Какую зарплату вы хотите?
         buttons:
-            "Не указывать" -> /Обновление зп
-        script:
-            $session.city = "";
+            "Не указывать" -> /Обновление зп и запрос параметра
         intent: /Запрос о зарплате || toState = "/Определение зарплаты"
         event: noMatch || toState = "./"
 
-    state: Обновление зп
+    state: Обновление зп и запрос параметра
         script:
-            $session.salary = null;
+            $session.salary = undefined;
         if: $session.city == "" && $session.profession == "" && $session.salary == ""
             a: Необходимо указать хотя-бы 1 параметр
             buttons:
                 "В начало" -> /запрос профессии
         else: 
-            buttons:
-                "Найти вакансии" -> /NewState
+            go!: /Подтверждение данных
         event: noMatch || toState = "/Инфо"
+
+    state: обновление профессии
+        script:
+            $session.profession = $parseTree._Profession;
+        if: $session.profession == undefined
+            go!: /запрос города
+
+    state: Обновление города
+        script:
+            $session.city = $parseTree._City
+            $session.city = ""
+        if: $session.city == undefined
+            go!: /запрос зарплаты
+
+
+    state: Подтверждение данных
+        a: Ваши данные:
+                Профессия: {{$session.profession}}
+                Город: {{$session.city}}
+                Зарплата: {{$session.salary}}
+                Подтвердите поиск или начните заново
+        buttons:
+            "Подтвердить" -> /NewState
+            "Начать с начала" -> /запрос профессии
+
+    state: Запрос параметра
+        if: $session.city == undefined && $session.profession == undefined && $session.salary == undefined
+            a: Необходимо указать хотя-бы 1 параметр
+            buttons:
+                "В начало" -> /запрос профессии
+        else: 
+            go!: /Подтверждение данных
+        event: noMatch
