@@ -93,11 +93,13 @@
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
-      "text" : "Я живу в городе Иркутск"
+      "text" : "Я живу в городе @mystem.geo"
     }, {
-      "text" : "Мой город Иркутск"
+      "text" : "Мой город @mystem.geo"
     }, {
-      "text" : "хочу найти работу в городе москва"
+      "text" : "хочу найти работу в городе @mystem.geo"
+    }, {
+      "text" : "@mystem.geo"
     } ],
     "classificationRules" : {
       "refs" : [ ]
@@ -114,16 +116,6 @@
       "required" : false,
       "prompts" : [ ]
     } ],
-    "priority" : 0
-  }, {
-    "path" : "/запрос города",
-    "enabled" : true,
-    "shared" : false,
-    "phrases" : [ ],
-    "classificationRules" : {
-      "refs" : [ ]
-    },
-    "patterns" : [ ],
     "priority" : 0
   }, {
     "path" : "/Запрос о зарплате",
@@ -145,10 +137,36 @@
       "prompts" : [ ]
     } ],
     "priority" : 0
+  }, {
+    "path" : "/запрос о профессии",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "хочу работать @Profession"
+    }, {
+      "text" : "хочу работать @Profession"
+    }, {
+      "text" : "@Profession"
+    }, {
+      "text" : "меня интересует профессия @Profession"
+    }, {
+      "text" : "я хочу работать @Profession"
+    } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "slots" : [ {
+      "name" : "Profession",
+      "entity" : "Profession",
+      "required" : false,
+      "prompts" : [ ]
+    } ],
+    "priority" : 0
   } ],
   "entities" : [ {
     "entity" : {
-      "name" : "Профессия",
+      "name" : "Profession",
       "enabled" : true,
       "shared" : false,
       "type" : "annotation",
@@ -162,12 +180,540 @@
     },
     "records" : [ {
       "type" : "synonyms",
-      "rule" : [ "программист", "разработчик ПО" ],
-      "value" : "{\n\"value\": \"software developer\",\n\"profession_id\": 1\n}"
+      "rule" : [ "Разработчик ПО" ],
+      "value" : ""
     }, {
       "type" : "synonyms",
       "rule" : [ "Преподаватель" ],
-      "value" : "{\n  \"value\": \"teacher\",\n  \"profession_id\": 2\n}"
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Дворник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Агроном" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Актер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Архитектор" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Банкир" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Вахтер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Ведущий" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Веб-программист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Воспитатель" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Геолог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Гид" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Инспектор" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Лаборант" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Маляр" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Математик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Медсестра" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Менеджер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Монтажник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Музыкант" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Официант" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Плотник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Почтальон" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Продавец" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Риэлтор" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Руководитель" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Рыбак" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Садовник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Системный аналитик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Слесарь" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Столяр" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Стилист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Телеведущий" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Управляющий" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Фрезеровщик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Химик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Консьерж" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Шеф" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Штурман" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Электрик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Эндокринолог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Энергетик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Ювелир" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Тренер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Администратор" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Аналитик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Бригадир" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Бухгалтер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Гончар" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Дизайнер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Журналист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Инструктор" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Информатик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Кассир" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Каскадер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Кондитер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Косметолог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Курьер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Летчик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Машинист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Модель" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Начальник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Няня" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Оператор" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Охотник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Охранник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Пекарь" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Редактор" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Репортер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Секретарь" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Строитель" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Судья" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Таксист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Тестировщик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Фельдшер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Физик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Философ" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Флорист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Маркетолог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Хирург" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Художник" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Экскурсовод" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Ямщик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Разработчик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Врач" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Инженер-технолог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Агент" ],
+      "value" : "{\n\"value\": \"agent\"\n}"
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Диспетчер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Адвокат" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Артист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Бариста" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Бармен" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Водитель" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Геодезист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Грузчик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Инженер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Историк" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Кинолог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Клоун" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Консультант" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Массажист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Механик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Мойщик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Монтажер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Моряк" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Нарколог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Невролог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Парикмахер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Педагог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Переводчик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Пивовар" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Повар" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Психолог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Рекрутер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Сборщик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Сео" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Сисадмин" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Спасатель" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Стоматолог" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Уборщик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Учитель" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Фармацевт" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Фотограф" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Фрилансер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Часовщик" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Швейцар" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Шахтер" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Шеф-повар" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Шут" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Экономист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Юморист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Юрист" ],
+      "value" : ""
+    }, {
+      "type" : "synonyms",
+      "rule" : [ "Программист" ],
+      "value" : ""
     } ]
   } ],
   "enabledSystemEntities" : [ "mystem.geo", "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url", "duckling.amount-of-money" ],
