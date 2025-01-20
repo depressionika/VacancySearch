@@ -6,23 +6,23 @@ theme: /
         q!: $regex</start>
         a: Начнём.
         intent: /привет || toState = "/Hello"
-        event: noMatch || toState = "./"
+        event: noMatch || toState = "/NoMatch"
 
     state: Hello
         intent!: /привет
         a: Привет привет
-        intent: /Поиск работы || toState = "/запрос профессии"
+        intent: /jobSearch || toState = "/запрос профессии"
         event: noMatch || toState = "./"
 
     state: запрос города
         a: В каком городе вы хотите найти работу?
         buttons:
             "Не указывать" -> /Обновление города
-        intent: /Запрос о работе || toState = "/Определение города"
+        intent: /jobRequest || toState = "/Определение города"
         event: noMatch || toState = "./"
 
     state: Определение города
-        intent: /Запрос о работе
+        intent: /jobRequest
         script:
             $session.city = $parseTree._City;
         if: $session.city == undefined
@@ -40,13 +40,15 @@ theme: /
     state: NoMatch
         event!: noMatch
         a: Я не понял. Вы сказали: {{$request.query}}
+        if: $session.city==undefined || $session.city!=undefined
+            go!: /Start
 
     state: Match
         event!: match
         a: {{$context.intent.answer}}
 
     state: Определение зарплаты
-        intent!: /Запрос о зарплате
+        intent!: /salaryRequest
         script:
             $session.salary = $parseTree._Salary;
         if: $session.salary == undefined
@@ -98,11 +100,11 @@ theme: /
         a: Какая профессия вас интересует?
         buttons:
             "Не указывать" -> /обновление профессии
-        intent: /запрос о профессии || toState = "/определение профессии"
+        intent: /professionRequest || toState = "/определение профессии"
         event: noMatch || toState = "./"
 
     state: определение профессии
-        intent!: /запрос о профессии
+        intent!: /professionRequest
         script:
             $session.profession = $parseTree._Profession;
         if: $session.profession == undefined
@@ -116,13 +118,13 @@ theme: /
         a: Какую зарплату вы хотите?
         buttons:
             "Не указывать" -> /Обновление зп и запрос параметра
-        intent: /Запрос о зарплате || toState = "/Определение зарплаты"
+        intent: /salaryRequest || toState = "/Определение зарплаты"
         event: noMatch || toState = "./"
 
     state: Обновление зп и запрос параметра
         script:
             $session.salary = undefined;
-        if: $session.city == "" && $session.profession == "" && $session.salary == ""
+        if: $session.city == "" && $session.profession == undefined && $session.salary == undefined
             a: Необходимо указать хотя-бы 1 параметр
             buttons:
                 "В начало" -> /запрос профессии
@@ -138,11 +140,10 @@ theme: /
 
     state: Обновление города
         script:
-            $session.city = $parseTree._City
+            $session.city = $parseTree._City;
             $session.city = ""
-        if: $session.city == undefined
+        if: $session.city == ""
             go!: /запрос зарплаты
-
 
     state: Подтверждение данных
         a: Ваши данные:

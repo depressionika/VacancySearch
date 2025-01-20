@@ -53,7 +53,7 @@
     "patterns" : [ ],
     "priority" : 0
   }, {
-    "path" : "/Поиск работы",
+    "path" : "/jobSearch",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -89,7 +89,7 @@
     "patterns" : [ ],
     "priority" : 0
   }, {
-    "path" : "/Запрос о работе",
+    "path" : "/jobRequest",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -118,7 +118,7 @@
     } ],
     "priority" : 0
   }, {
-    "path" : "/Запрос о зарплате",
+    "path" : "/salaryRequest",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -172,7 +172,7 @@
     } ],
     "priority" : 0
   }, {
-    "path" : "/запрос о профессии",
+    "path" : "/professionRequest",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -214,15 +214,7 @@
     },
     "records" : [ {
       "type" : "synonyms",
-      "rule" : [ "Разработчик ПО" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Преподаватель" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Дворник" ],
+      "rule" : [ "Дворник", "Уборщик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -230,7 +222,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Актер" ],
+      "rule" : [ "Актер", "Актриса", "Артист" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -250,7 +242,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Веб-программист" ],
+      "rule" : [ "Веб-программист", "Frontend-разработчик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -259,10 +251,6 @@
     }, {
       "type" : "synonyms",
       "rule" : [ "Геолог" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Гид" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -278,11 +266,11 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Математик" ],
+      "rule" : [ "Математик", "Арифметик", "Счетовод", "Калькулятор" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Медсестра" ],
+      "rule" : [ "Медсестра", "Медбрат" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -294,11 +282,11 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Музыкант" ],
+      "rule" : [ "Музыкант", "Певец", "Певица", "Репер", "Композитор" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Официант" ],
+      "rule" : [ "Официант", "Официантка" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -318,19 +306,15 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Руководитель" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
       "rule" : [ "Рыбак" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Садовник" ],
+      "rule" : [ "Садовник", "Садовод" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Системный аналитик" ],
+      "rule" : [ "Системный аналитик", "СА", "БА", "Бизнес аналитик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -350,10 +334,6 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Управляющий" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
       "rule" : [ "Фрезеровщик" ],
       "value" : ""
     }, {
@@ -362,11 +342,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Консьерж" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Шеф" ],
+      "rule" : [ "Консьерж", "Дворецкий", "Швейцар" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -390,15 +366,11 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Тренер" ],
+      "rule" : [ "Администратор", "Админ", "Сисадмин" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Администратор" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Аналитик" ],
+      "rule" : [ "Аналитик", "Аналитик 1С" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -414,7 +386,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Дизайнер" ],
+      "rule" : [ "Дизайнер", "UI/UX-дизайнер" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -422,7 +394,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Инструктор" ],
+      "rule" : [ "Инструктор", "Тренер" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -430,7 +402,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Кассир" ],
+      "rule" : [ "Кассир", "Билетер" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -438,23 +410,23 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Кондитер" ],
+      "rule" : [ "Кондитер", "Пекарь" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Косметолог" ],
+      "rule" : [ "Косметолог", "Косметик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Курьер" ],
+      "rule" : [ "Курьер", "Доставщик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Летчик" ],
+      "rule" : [ "Летчик", "Пилот" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Машинист" ],
+      "rule" : [ "Машинист", "Водитель поезда" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -462,11 +434,11 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Начальник" ],
+      "rule" : [ "Начальник", "Босс", "Руководитель", "Управляющий", "Шеф" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Няня" ],
+      "rule" : [ "Няня", "Сиделка" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -474,15 +446,11 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Охотник" ],
+      "rule" : [ "Охотник", "Егерь" ],
       "value" : ""
     }, {
       "type" : "synonyms",
       "rule" : [ "Охранник" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Пекарь" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -510,7 +478,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Тестировщик" ],
+      "rule" : [ "Тестировщик", "Тестер" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -542,7 +510,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Экскурсовод" ],
+      "rule" : [ "Экскурсовод", "Гид" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -550,11 +518,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Разработчик" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Врач" ],
+      "rule" : [ "Врач", "Доктор" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -574,10 +538,6 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Артист" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
       "rule" : [ "Бариста" ],
       "value" : ""
     }, {
@@ -586,7 +546,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Водитель" ],
+      "rule" : [ "Водитель", "Шофёр" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -606,11 +566,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Кинолог" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Клоун" ],
+      "rule" : [ "Кинолог", "Дрессировщик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -622,11 +578,11 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Механик" ],
+      "rule" : [ "Механик", "Автомеханик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Мойщик" ],
+      "rule" : [ "Мойщик", "Автомойщик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -634,7 +590,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Моряк" ],
+      "rule" : [ "Моряк", "Мореплаватель" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -646,11 +602,11 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Парикмахер" ],
+      "rule" : [ "Парикмахер", "Парикмахерша" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Педагог" ],
+      "rule" : [ "Педагог", "Учитель", "Преподаватель" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -662,7 +618,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Повар" ],
+      "rule" : [ "Повар", "Повариха", "Шеф-повар" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -674,7 +630,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Сборщик" ],
+      "rule" : [ "Сборщик", "Комплектовщик" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -682,19 +638,11 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Сисадмин" ],
+      "rule" : [ "Спасатель", "МЧС" ],
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Спасатель" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Стоматолог" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Уборщик" ],
+      "rule" : [ "Стоматолог", "Зубной", "Дантист" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -702,7 +650,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Фармацевт" ],
+      "rule" : [ "Фармацевт", "Аптекарь" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -718,19 +666,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Швейцар" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
       "rule" : [ "Шахтер" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Шеф-повар" ],
-      "value" : ""
-    }, {
-      "type" : "synonyms",
-      "rule" : [ "Шут" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -738,7 +674,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Юморист" ],
+      "rule" : [ "Юморист", "Шут", "Клоун" ],
       "value" : ""
     }, {
       "type" : "synonyms",
@@ -746,7 +682,7 @@
       "value" : ""
     }, {
       "type" : "synonyms",
-      "rule" : [ "Программист" ],
+      "rule" : [ "Программист", "Разработчик", "Разработчик ПО", "backend-разработчик", "программист 1С" ],
       "value" : ""
     } ]
   } ],
